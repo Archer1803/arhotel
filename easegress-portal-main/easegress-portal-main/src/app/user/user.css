@@ -1,0 +1,296 @@
+/* Reset & Theme */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --nav-hover: #f0f0f0;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #f1f1f1;
+  --nav-hover: #333333;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  height: 60px;
+  background-color: var(--bg-color);
+  border-bottom: 1px solid #ddd;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Nav Links */
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.nav a.active,
+.nav a:hover {
+  background-color: var(--nav-hover);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.theme-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.slider {
+  cursor: pointer;
+  width: 60px;
+  height: 30px;
+  background: #ccc;
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  transition: background 0.3s ease-in-out;
+}
+
+.slider .icon {
+  font-size: 14px;
+  z-index: 2;
+}
+
+.sun {
+  color: #f5c518;
+}
+
+.moon {
+  color: #4f5d75;
+}
+
+.slider .ball {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1;
+}
+
+input:checked + .slider .ball {
+  transform: translateX(46px);
+}
+
+input:checked + .slider {
+  background: #444;
+}
+
+/* Hamburger Icon */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-color);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Overlay for mobile menu */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logout {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--text-color); /* Tùy vào theme */
+  transition: color 0.2s;
+}
+
+.logout:hover {
+  color: red;
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: var(--bg-color);
+    padding: 2rem 1rem;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .theme-toggle {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* Main content area */
+main {
+  padding: 1.5rem;
+  margin-top: 80px;
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+}
+.desktop-only {
+  display: flex;
+}
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .logout {
+    display: none;
+  }
+
+  .mobile-only {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .logout.mobile-only {
+    cursor: pointer;
+    color: var(--text-color);
+  }
+
+  .logout.mobile-only:hover {
+    color: red;
+  }
+
+  .theme-toggle.mobile-only {
+    justify-content: flex-start;
+  }
+}
+.footer {
+  background-color: var(--footer-bg, #1a1a1a);
+  color: white;
+  padding: 2rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-left,
+.footer-right {
+  flex: 1 1 300px;
+}
+
+.footer-left h3 {
+  margin-bottom: 0.5rem;
+}
+
+.footer-right h4 {
+  margin-bottom: 0.8rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 1.4rem;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #facc15; /* Vàng nhạt */
+}
