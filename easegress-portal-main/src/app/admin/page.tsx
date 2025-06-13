@@ -1,29 +1,4 @@
-// "use client"
 
-// import { Typography } from "@mui/material"
-// import { useRouter } from "next/navigation"
-// import { useEffect } from "react"
-// import { useIntl } from "react-intl"
-
-// export default function AdminHome() {
-//   const router = useRouter()
-//   const intl = useIntl()
-
-//   useEffect(() => {
-//     const timer = setTimeout(() => {
-//       router.push("/rooms") 
-//     }, 500)
-//     return () => clearTimeout(timer)
-//   }, [router])
-
-//   return (
-//     <div>
-//       <Typography>{intl.formatMessage({ id: 'app.redirect' })}</Typography>
-//     </div>
-//   )
-// }
-
-// app/admin/page.tsx
 "use client"
 
 import { useEffect } from 'react'
